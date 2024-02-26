@@ -3,13 +3,15 @@ function callApi() {
 
     axios.get(url)
     .then(response => {
-        data = response.data
+        const data = response.data
         console.log(data)
-        console.log(data[0].description)
-
+        const desc_container = document.getElementById('desc_container');
+        const desc = data[0].description
+        desc_container.textContent = desc
     })
     .catch(error => {
         console.error('Erreur lors de la requête GET', error);
     });
-
 }
+
+callApi()

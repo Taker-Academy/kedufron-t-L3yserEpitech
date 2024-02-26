@@ -1,43 +1,48 @@
-/* Styles généraux */
+* {
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'font_logo';
+    src: url('font/StretchPro.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'font_nav';
+    src: url('font/Caviar.ttf') format('truetype');
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    background-color: #FAFAFC;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
+nav {
+    display: flex;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+header nav {
+    padding: 0% 20%;
+    background-color: white;
+    height: 4.5rem;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 20px;
+.logo {
+    font-family: 'font_logo', sans-serif;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    font-weight: 500;
+    font-size: 2rem;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
+.logo:hover {
+    cursor: pointer;
 }
 
-/* Styles spécifiques */
-main {
-    padding: 20px;
-}
+.shop_button {
+    font-family: 'font_nav', sans-serif;
+    letter-spacing: 2px;
+    align-items: center;
+    font-weight: 00;
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
