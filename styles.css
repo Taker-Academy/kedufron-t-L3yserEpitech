@@ -16,14 +16,17 @@ body {
     background-color: #FAFAFC;
 }
 
-nav {
+header {
     display: flex;
+    flex-direction: column;
 }
 
 header nav {
     padding: 0% 20%;
     background-color: white;
     height: 4.5rem;
+    display: flex;
+    flex-direction: row;
 }
 
 .logo {
@@ -42,7 +45,79 @@ header nav {
 .shop_button {
     font-family: 'font_nav', sans-serif;
     letter-spacing: 2px;
-    align-items: center;
-    font-weight: 00;
-
+    height: auto;
+    margin: 1rem 0;
+    margin-left: 3rem;
+    padding: 0.7rem;
 }
+
+.fa-chevron-down {
+    margin: 1.3rem 0;
+    padding: 0.5rem 0;
+    transition: transform 0.3s ease;
+}
+
+.fa-chevron-down:hover {
+    transform: rotate(180deg);
+}
+
+.shop_button:hover + .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.fa-cart-shopping {
+    padding: 1.3rem;
+    margin: 1rem 0;
+    margin-left: auto;
+}
+
+.fa-cart-shopping, .fa-chevron-down, .shop_button {
+    cursor: pointer;
+}
+
+.fa-bars {
+    display: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+    .fa-cart-shopping, .fa-chevron-down, .shop_button {
+        display:  none;
+    }
+    .logo {
+        width: 100%;
+        justify-content: center;
+    }
+    header nav {
+        padding: 0 0;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .fa-bars {
+        display: flex;
+        height: auto;
+        align-items: center;
+        padding: 0.5rem;
+        margin: 0.8rem 0;
+    }
+}
+
+@media screen and (max-width: 315px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 210px) {
+    .logo {
+        display: none;
+    }
+    header nav {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+
+
+
