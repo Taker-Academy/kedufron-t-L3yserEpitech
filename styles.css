@@ -84,10 +84,8 @@ header nav {
     cursor: pointer;
 }
 
-@media screen and (min-width: 850px) {
-    .fa-bars {
-        display: none;
-    }
+.fa-bars {
+    display: none;
 }
 
 @media screen and (max-width: 850px) {
@@ -130,10 +128,10 @@ header nav {
 }
 
 .shop_div {
+    display: none;
     background-color: #FAFAFC;
     height: 23rem;
     box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.05);
-    display: flex;
 }
 
 .shop_div ul li {
@@ -165,9 +163,15 @@ header nav {
     margin-left: 110%;
     padding: 0.5rem;
     width: auto;
+
     font-weight: 600;
     font-size: 0.9rem;
     letter-spacing: 1px;
+    transition: 0.2s ease;
+}
+
+.shop_item:hover {
+    padding-left: 0.8rem;
 }
 
 .popular_item {
@@ -181,9 +185,13 @@ header nav {
     letter-spacing: 1px;
 }
 
-.popular_item h4 {
-    
+.popular_img {
+    margin-top: 1.4rem;
+    cursor: pointer;
+    width: 300px;
+    box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
 }
-
-
-
+.popular_img:hover {
+    box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.18);
+}
