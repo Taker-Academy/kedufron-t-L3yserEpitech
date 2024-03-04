@@ -25,13 +25,15 @@ body {
     background-color: #FAFAFC;
 }
 
+/* -------------------------------------    HEADER    ------------------------------------ */
+
 header {
     display: flex;
     flex-direction: column;
 }
 
 header nav {
-    padding: 0% 20%;
+    padding: 0% 18%;
     background-color: white;
     height: 4.5rem;
     display: flex;
@@ -49,29 +51,6 @@ header nav {
 
 .logo:hover {
     cursor: pointer;
-}
-
-.shop_button {
-    font-family: 'font_classic', sans-serif;
-    letter-spacing: 2px;
-    height: auto;
-    margin: 1rem 0;
-    margin-left: 3rem;
-    padding: 0.7rem;
-}
-
-.fa-chevron-down {
-    margin: 1.3rem 0;
-    padding: 0.5rem 0;
-    transition: transform 0.3s ease;
-}
-
-.fa-chevron-down:hover {
-    transform: rotate(180deg);
-}
-
-.shop_button:hover + .fa-chevron-down {
-    transform: rotate(180deg);
 }
 
 .fa-cart-shopping {
@@ -127,71 +106,121 @@ header nav {
     }
 }
 
-.shop_div {
-    display: none;
-    background-color: #FAFAFC;
-    height: 23rem;
-    box-shadow: 0px 40px 50px rgba(0, 0, 0, 0.05);
-}
+/* -------------------------------------    BODY     ------------------------------------ */
 
-.shop_div ul li {
-    margin: 1.3rem 0;
-}
-
-.shop_div ul {
-    width: 50%;
-}
-
-.shop_div ul h4 {
-    color: #1C1C1E;
-    font-family: 'font_classic', sans-serif;
-    margin-left: 110%;
-    margin-top: 3rem;
-    padding-left: 0.5rem;
-    font-size: larger;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.item_link, .popular_item {
-    width: 50%;
-}
-
-.shop_item {
-    font-family: 'font_classic';
-    color: #747478;
-    margin-left: 110%;
-    padding: 0.5rem;
-    width: auto;
-
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    transition: 0.2s ease;
-}
-
-.shop_item:hover {
-    padding-left: 0.8rem;
-}
-
-.popular_item {
+.main_product {
+    margin: 0% 18%;
     display: flex;
-    flex-direction: column;
-    margin-top: 3rem;
-    color: #1C1C1E;
-    font-family: 'font_classic', sans-serif;
-    font-size: larger;
-    font-weight: 700;
-    letter-spacing: 1px;
+    flex-direction: row;
 }
 
-.popular_img {
-    margin-top: 1.4rem;
+.tittle_main_product {
+    width: 50%;
+    font-family: 'font_classic';
+}
+
+.tittle_main_product h1 {
+    width: 62%;
+    font-size: 3rem;
+    margin-top: 14rem;
+}
+
+.tittle_main_product p {
+    width: 65%;
+    margin-top: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color:#7a7a7a;
+}
+
+.tittle_main_product h3 {
+    display: flex;
+    color: white;
+    margin-top: 2.5rem;
+    font-size: 1.1rem;
+    width: 65%;
+    background-color: #EC008D;
+    justify-content: center;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-radius: 3rem;
     cursor: pointer;
-    width: 300px;
-    box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.08);
     transition: 0.3s ease;
 }
-.popular_img:hover {
-    box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.18);
+
+.tittle_main_product h3:hover {
+    background-color: #fc66c0;
+    box-shadow: 0px 0px 8px #ff7bca;
+}
+
+.product {
+    display: flex;
+}
+
+@media screen and (max-width: 880px) {
+    .photo_mp {
+        display: none;
+    }
+}
+
+.product {
+    display: flex;
+    margin: 0 15%;
+    margin-top: 3rem;
+    font-family: 'font_classic';
+}
+
+.title_allp {
+    width: 50%;
+}
+
+.title_allp h2 {
+    font-size: 2rem;
+    width: 12rem;
+    margin-bottom: 1.5rem;
+}
+
+.title_allp p {
+    width: 65%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color:#7a7a7a;
+}
+
+.conteudo {
+    width: 68%;
+}
+.carrousel {
+    display: grid;
+    grid-auto-flow: column;
+    scroll-behavior: auto;
+    gap: 1.2rem;
+    overflow-x: auto; /* Utilisez overflow-x pour définir le défilement horizontal */
+    overflow-y: auto; /* Masquez le défilement vertical */
+    overscroll-behavior-x: contain;
+    scrollbar-width: auto;
+    scrollbar-width: thin; /* Définissez la largeur de la barre de défilement */
+    -webkit-overflow-scrolling: touch; /* Amélioration pour le défilement tactile */
+    direction: rtl; /* Change la direction de défilement de droite à gauche */
+}
+
+/* Si vous voulez également cacher la barre de défilement standard des navigateurs */
+.carrousel::-webkit-scrollbar {
+    display: flex;
+}
+.card {
+    scroll-snap-align: start;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    min-height: 200px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card:nth-child(odd) {
+    background-color: blue;
+}
+.card:nth-child(even) {
+    background-color: gray;
 }
