@@ -41,18 +41,14 @@ function itemMainPage(data) {
 }
 
 function popularItemMainPage(data) {
-    const name = data[2].name + ' !'
-    const desc = data[2].description
-    const button = data[2].name
-    
     const nameContainer = document.getElementById('popular-name')
     const descContainer = document.getElementById('popular-desc')
     const buttonContainer = document.getElementById('popular-button')
     const imageContainer = document.getElementById('popular-image')
 
-    nameContainer.textContent = name
-    descContainer.textContent = desc
-    buttonContainer.textContent = 'Shop ' + button
+    nameContainer.textContent = data[2].name + ' !'
+    descContainer.textContent = data[2].description
+    buttonContainer.textContent = 'Shop ' + data[2].name
     
     const imageUrl = 'https://api.kedufront.juniortaker.com/item/picture/3'
     const imageElement = document.createElement('img')
