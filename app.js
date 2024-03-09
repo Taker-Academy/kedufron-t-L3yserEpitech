@@ -5,31 +5,36 @@ function callApi() {
     axios.get(url)
     .then(response => {
         const data = response.data
-        for (let i = 0; i < data.length; i++) {
-            const name = data[i].name
-            const image = data[i].image
-            const price = data[i].price + '€'
-
-            const nameContainer = document.getElementById(`name-${i}`)
-            const priceContainer = document.getElementById(`price-${i}`)
-            const imageContainer = document.getElementById(`image-${i}`)
-
-            nameContainer.textContent = name
-            priceContainer.textContent = price
-            const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${image}`
-            const imageElement = document.createElement('img');
-            imageElement.src = imageUrl;
-            imageElement.style.width = '320px'
-            imageElement.style.height = '310px'
-            imageElement.style.borderTopLeftRadius = '20px'
-            imageElement.style.borderTopRightRadius = '20px'
-            imageContainer.appendChild(imageElement);
-            imageElement.src = imageUrl;
-        }
+        itemMainPage(data)
     })
     .catch(error => {
         console.error('Erreur lors de la requête GET', error);
     })
+}
+
+function itemMainPage(data) {
+    for (let i = 0; i < data.length; i++) {
+        const name = data[i].name
+        const image = data[i].image
+        const price = data[i].price + '€'
+
+        const nameContainer = document.getElementById(`name-${i}`)
+        const priceContainer = document.getElementById(`price-${i}`)
+        const imageContainer = document.getElementById(`image-${i}`) 
+
+        nameContainer.textContent = name
+        priceContainer.textContent = price
+
+        const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${image}`
+        const imageElement = document.createElement('img');
+        imageElement.src = imageUrl;
+        imageElement.style.width = '320px'
+        imageElement.style.height = '310px'
+        imageElement.style.borderTopLeftRadius = '20px'
+        imageElement.style.borderTopRightRadius = '20px'
+        imageContainer.appendChild(imageElement);
+        imageElement.src = imageUrl;
+    }
 }
 
 callApi()
