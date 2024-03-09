@@ -1,4 +1,3 @@
-
 function callApi() {
     const url = "https://api.kedufront.juniortaker.com/item/"
 
@@ -15,18 +14,14 @@ function callApi() {
 
 function itemMainPage(data) {
     for (let i = 0; i < data.length; i++) {
-        const name = data[i].name
-        const image = data[i].image
-        const price = data[i].price + '€'
-
         const nameContainer = document.getElementById(`name-${i}`)
         const priceContainer = document.getElementById(`price-${i}`)
         const imageContainer = document.getElementById(`image-${i}`) 
 
-        nameContainer.textContent = name
-        priceContainer.textContent = price
+        nameContainer.textContent = data[i].name
+        priceContainer.textContent = data[i].price + '€'
 
-        const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${image}`
+        const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${data[i].image}`
         const imageElement = document.createElement('img');
         imageElement.src = imageUrl
         imageContainer.appendChild(imageElement)
