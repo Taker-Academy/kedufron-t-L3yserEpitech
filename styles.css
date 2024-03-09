@@ -4,6 +4,7 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 @font-face {
@@ -145,7 +146,7 @@ header nav {
     padding-bottom: 0.8rem;
     border-radius: 3rem;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .tittle_main_product h3:hover {
@@ -188,39 +189,169 @@ header nav {
 }
 
 .conteudo {
-    width: 68%;
+    width: 80%;
 }
 .carrousel {
     display: grid;
     grid-auto-flow: column;
     scroll-behavior: auto;
     gap: 1.2rem;
-    overflow-x: auto; /* Utilisez overflow-x pour définir le défilement horizontal */
-    overflow-y: auto; /* Masquez le défilement vertical */
+    overflow-x: auto;
+    overflow-y: auto;
     overscroll-behavior-x: contain;
     scrollbar-width: auto;
-    scrollbar-width: thin; /* Définissez la largeur de la barre de défilement */
-    -webkit-overflow-scrolling: touch; /* Amélioration pour le défilement tactile */
-    direction: rtl; /* Change la direction de défilement de droite à gauche */
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+    direction: rtl;
 }
 
-/* Si vous voulez également cacher la barre de défilement standard des navigateurs */
 .carrousel::-webkit-scrollbar {
     display: flex;
 }
 .card {
-    scroll-snap-align: start;
-    margin-bottom: 20px;
-    border-radius: 30px;
-    min-height: 200px;
-    min-width: 300px;
+    margin-bottom: 1px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    min-height: 35rem;
+    min-width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.name_item {
+    font-family: 'font_classic';
+    margin-top: 3.5rem;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.price_item {
+    font-family: 'font_classic';
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fc66c0;
+}
+
+.bt_shop_item {
+    font-family: 'font_classic';
+    display: flex;
+    color: white;
+    margin-top: 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 80%;
+    background-color: black;
+    justify-content: center;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #000000;
+    transition: all 0.3s ease;
+}
+
+.bt_shop_item:hover {
+    transform: scale(1.1);
+}
+
+.photo_item {
+    cursor: pointer;
+}
+
+.product_div {
+    margin: 0 0;
+    background-color: whi;
+    height: 50rem;
+    display: flex;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.photo_product {
     display: flex;
     align-items: center;
+    
+}
+
+.prod {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     justify-content: center;
 }
-.card:nth-child(odd) {
-    background-color: blue;
+
+.product_div {
+    display: flex;
 }
-.card:nth-child(even) {
-    background-color: gray;
+
+.prod_name {
+    display: flex;
+}
+
+.panel_prod {
+    background-color: white;
+    width: 75%;
+    margin-left: 12.5%;
+    box-shadow: 0px 0px 8px #c0c0c0;
+}
+
+.prod_name {
+    font-family: 'font_classic';
+    margin-bottom: 2rem;
+    margin-left: 12.5%;
+    font-size: xx-large;
+}
+
+.price {
+    font-family: 'font_classic';
+    font-weight: 600;
+    color: #EC008D;;
+    font-size:x-large;
+    margin-left: 2rem;
+    margin-top: 1.5rem;
+}
+
+.item1 {
+    font-family: 'font_classic';
+    display: flex;
+    color: white;
+    margin-top: 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 86%;
+    background-color: #EC008D;
+    justify-content: center;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #f060b6;
+    transition: all 0.3s ease;
+    margin-left: 7%;
+    margin-bottom: 0.9rem;
+}
+
+.item1:hover {
+    background-color: #ff5dbe;
+}
+
+.limit_offer {
+    font-family: 'font_classic';
+    font-weight: 600;
+    color: #7a7a7a;
+    margin-left: 2rem;
+    margin-right: 2remrem;
+    margin-bottom: 1rem;
+}
+
+.desc_prod {
+    font-family: 'font_classic';
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 5rem;
 }
