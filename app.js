@@ -62,54 +62,56 @@ function eventClick(data) {
     const imagesContainer = document.querySelectorAll('[id^="image-"]');
 
     imagesContainer.forEach((image) => {
-      image.addEventListener('click', function() {
-        item = this.id.split('-')[1]
-
-        // Récupérer le contenu de product.html depuis le serveur à l'aide d'Axios
-        axios.get('product.html')
-            .then((response) => {
-                const html = response.data
-
-                // Insérer le contenu de product.html dans la page actuelle
-                const productPage = document.createElement('div')
-                productPage.innerHTML = html
-
-                // Remplacer le contenu de la balise <div> avec l'ID "image" par l'image du produit
-                const imageContainer = productPage.querySelector(`#image`)
-                const image = item + 1
-                const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${data[item].image}`
-                const imageElement = document.createElement('img');
-                imageElement.src = imageUrl
-                imageContainer.appendChild(imageElement)
-                imageElement.style.cssText = `
-                    width: 500px;
-                    border-top-left-radius: 20px;
-                    border-top-right-radius: 20px;
-                `
-
-                // Remplacer le contenu des balises <h1>, <p> et <span> par les données du produit
-                const nameContainer = productPage.querySelector('#name')
-                const priceContainer = productPage.querySelector('#price')
-                const descContainer = productPage.querySelector('#desc')
-
-                nameContainer.textContent = data[item].name
-                priceContainer.textContent = `EU ${data[item].price}€`
-                descContainer.textContent = `${data[item].description} Fabriqué le ${data[item].createdIn}`
-
-                const logoContainer = productPage.querySelector('#logo')
-                logoContainer.addEventListener('click', function() {
-                    returnIndexPage(data)
-                })
-        
-                // Afficher la page produit dans le navigateur
-                const body = document.querySelector('body')
-                body.innerHTML = ''
-                body.appendChild(productPage)
-            })
-            .catch(error => {
-                console.error('Erreur lors de la requête GET', error);
-            })
+        image.addEventListener('click', function() {
+            item = this.id.split('-')[1]
+            returnProductPage(data, item)
         })
+    })
+}
+
+function returnProductPage(data, item) {
+    axios.get('product.html')
+    .then((response) => {
+        const html = response.data
+
+        // Insérer le contenu de product.html dans la page actuelle
+        const productPage = document.createElement('div')
+        productPage.innerHTML = html
+
+        // Remplacer le contenu de la balise <div> avec l'ID "image" par l'image du produit
+        const imageContainer = productPage.querySelector(`#image`)
+        const image = item + 1
+        const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${data[item].image}`
+        const imageElement = document.createElement('img');
+        imageElement.src = imageUrl
+        imageContainer.appendChild(imageElement)
+        imageElement.style.cssText = `
+            width: 500px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        `
+
+        // Remplacer le contenu des balises <h1>, <p> et <span> par les données du produit
+        const nameContainer = productPage.querySelector('#name')
+        const priceContainer = productPage.querySelector('#price')
+        const descContainer = productPage.querySelector('#desc')
+
+        nameContainer.textContent = data[item].name
+        priceContainer.textContent = `EU ${data[item].price}€`
+        descContainer.textContent = `${data[item].description} Fabriqué le ${data[item].createdIn}`
+
+        const logoContainer = productPage.querySelector('#logo')
+        logoContainer.addEventListener('click', function() {
+            returnIndexPage(data)
+        })
+
+        // Afficher la page produit dans le navigateur
+        const body = document.querySelector('body')
+        body.innerHTML = ''
+        body.appendChild(productPage)
+    })
+    .catch(error => {
+        console.error('Erreur lors de la requête GET', error);
     })
 }
 
@@ -158,6 +160,14 @@ function returnIndexPage(data) {
         popularImageElement.style.cssText = `
             width: 550px;
         `
+
+        const productContainer = productPage.querySelectorAll('[id^="image-"]');
+        productContainer.forEach((image) => {
+            image.addEventListener('click', function() {
+                item = this.id.split('-')[1]
+                returnProductPage(data, item)
+            })
+        })
 
         const body = document.querySelector('body')
         body.innerHTML = ''
