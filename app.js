@@ -1,7 +1,5 @@
 callApi()
 
-data = 0
-
 function callApi() {
     const url = "https://api.kedufront.juniortaker.com/item/"
 
