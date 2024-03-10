@@ -1,3 +1,7 @@
+callApi()
+
+data = 0
+
 function callApi() {
     const url = "https://api.kedufront.juniortaker.com/item/"
 
@@ -48,20 +52,51 @@ function popularItemMainPage(data) {
     const imageUrl = 'https://api.kedufront.juniortaker.com/item/picture/3'
     const imageElement = document.createElement('img')
     imageElement.src = imageUrl
-    imageContainer.appendChild(imageElement);
+    imageContainer.appendChild(imageElement)
     imageElement.style.cssText = `
         width: 550px;
     `
 }
 
 function eventClick(data) {
-    const images = document.querySelectorAll('[id^="image-"]')
+    const imagesContainer = document.querySelectorAll('[id^="image-"]');
+  
+    imagesContainer.forEach((image) => {
+      image.addEventListener('click', function() {
+        const item = this.id.split('-')[1]
 
-    images.forEach((image) => {
-        image.addEventListener('click', function() {
-            // testFonction(this.id.split('-')[1])
-        });
-    });
-}
+        // Récupérer le contenu de product.html depuis le serveur à l'aide d'Axios
+        axios.get('product.html')
+            .then((response) => {
+                const html = response.data
+                console.log(item)
 
-callApi()
+                // Insérer le contenu de product.html dans la page actuelle
+                const productPage = document.createElement('div')
+                productPage.innerHTML = html
+
+                // Remplacer le contenu de la balise <div> avec l'ID "image" par l'image du produit
+                const imageContainer = productPage.querySelector('#image')
+                const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${1}`
+                imageContainer.innerHTML = `<img src="${imageUrl}">`
+
+                // Remplacer le contenu des balises <h1>, <p> et <span> par les données du produit
+                const nameContainer = productPage.querySelector('#name')
+                const priceContainer = productPage.querySelector('#price')
+                const descContainer = productPage.querySelector('#desc')
+
+                nameContainer.textContent = data[item].name
+                priceContainer.textContent = `EU ${data[item].price}€`
+                descContainer.textContent = `${data[item].description} Fabriqué le ${data[item].createdIn}`
+
+                // Afficher la page produit dans le navigateur
+                const body = document.querySelector('body')
+                body.innerHTML = ''
+                body.appendChild(productPage)
+            })
+            .catch(error => {
+                console.error('Erreur lors de la requête GET', error);
+            })
+      })
+    })
+  }
