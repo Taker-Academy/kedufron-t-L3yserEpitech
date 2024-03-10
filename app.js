@@ -60,25 +60,32 @@ function popularItemMainPage(data) {
 
 function eventClick(data) {
     const imagesContainer = document.querySelectorAll('[id^="image-"]');
-  
+
     imagesContainer.forEach((image) => {
       image.addEventListener('click', function() {
-        const item = this.id.split('-')[1]
+        item = this.id.split('-')[1]
 
         // Récupérer le contenu de product.html depuis le serveur à l'aide d'Axios
         axios.get('product.html')
             .then((response) => {
                 const html = response.data
-                console.log(item)
 
                 // Insérer le contenu de product.html dans la page actuelle
                 const productPage = document.createElement('div')
                 productPage.innerHTML = html
 
                 // Remplacer le contenu de la balise <div> avec l'ID "image" par l'image du produit
-                const imageContainer = productPage.querySelector('#image')
-                const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${1}`
-                imageContainer.innerHTML = `<img src="${imageUrl}">`
+                const imageContainer = productPage.querySelector(`#image`)
+                const image = item + 1
+                const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${data[item].image}`
+                const imageElement = document.createElement('img');
+                imageElement.src = imageUrl
+                imageContainer.appendChild(imageElement)
+                imageElement.style.cssText = `
+                    width: 500px;
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                `
 
                 // Remplacer le contenu des balises <h1>, <p> et <span> par les données du produit
                 const nameContainer = productPage.querySelector('#name')
@@ -89,6 +96,11 @@ function eventClick(data) {
                 priceContainer.textContent = `EU ${data[item].price}€`
                 descContainer.textContent = `${data[item].description} Fabriqué le ${data[item].createdIn}`
 
+                const logoContainer = productPage.querySelector('#logo')
+                logoContainer.addEventListener('click', function() {
+                    returnIndexPage(data)
+                })
+        
                 // Afficher la page produit dans le navigateur
                 const body = document.querySelector('body')
                 body.innerHTML = ''
@@ -97,6 +109,58 @@ function eventClick(data) {
             .catch(error => {
                 console.error('Erreur lors de la requête GET', error);
             })
-      })
+        })
     })
-  }
+}
+
+function returnIndexPage(data) {
+    axios.get('index.html')
+    .then((response) => {
+        const html = response.data
+
+        // Insérer le contenu de product.html dans la page actuelle
+        const productPage = document.createElement('div')
+        productPage.innerHTML = html
+
+        for (let i = 0; i < data.length; i++) {
+            const nameContainer = productPage.querySelector(`#name-${i}`)
+            const priceContainer = productPage.querySelector(`#price-${i}`)
+            const imageContainer = productPage.querySelector(`#image-${i}`) 
+
+            nameContainer.textContent = data[i].name
+            priceContainer.textContent = data[i].price + '€'
+
+            const imageUrl = `https://api.kedufront.juniortaker.com/item/picture/${data[i].image}`
+            const imageElement = document.createElement('img');
+            imageElement.src = imageUrl
+            imageContainer.appendChild(imageElement)
+            imageElement.style.cssText = `
+                width: 320px;
+                height: 310px;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+            `
+        }
+
+        const popularNameContainer = productPage.querySelector(`#popular-name`)
+        const popularDescContainer = productPage.querySelector(`#popular-desc`)
+        const popularButtonContainer = productPage.querySelector(`#popular-button`)
+        const popularImageContainer = productPage.querySelector('#popular-image')
+
+        popularNameContainer.textContent = data[2].name + ' !'
+        popularDescContainer.textContent = data[2].description
+        popularButtonContainer.textContent = 'Shop ' + data[2].name
+        
+        const popularImageUrl = `https://api.kedufront.juniortaker.com/item/picture/${3}`
+        const popularImageElement = document.createElement('img');
+        popularImageElement.src = popularImageUrl
+        popularImageContainer.appendChild(popularImageElement)
+        popularImageElement.style.cssText = `
+            width: 550px;
+        `
+
+        const body = document.querySelector('body')
+        body.innerHTML = ''
+        body.appendChild(productPage)
+    })
+}

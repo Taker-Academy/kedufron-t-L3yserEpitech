@@ -302,7 +302,8 @@ header nav {
 .prod_name {
     font-family: 'font_classic';
     margin-bottom: 2rem;
-    margin-left: 12.5%;
+    margin-top: 2rem;
+    margin-left: 2rem;
     font-size: xx-large;
 }
 
@@ -319,7 +320,6 @@ header nav {
     font-family: 'font_classic';
     display: flex;
     color: white;
-    margin-top: 2.5rem;
     font-size: 1.1rem;
     font-weight: 600;
     width: 86%;
@@ -353,5 +353,5 @@ header nav {
     margin-top: 1rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3dvb;
 }
